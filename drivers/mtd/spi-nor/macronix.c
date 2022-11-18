@@ -169,6 +169,9 @@ static const struct flash_info macronix_nor_parts[] = {
 	{ "mx25r3235f",  INFO(0xc22816, 0, 64 * 1024,  64)
 		NO_SFDP_FLAGS(SECT_4K | SPI_NOR_DUAL_READ |
 			      SPI_NOR_QUAD_READ) },
+	{ "mx25r8035f",  INFO(0xc22814, 0, 64 * 1024,  16)
+		NO_SFDP_FLAGS(SECT_4K | SPI_NOR_DUAL_READ |
+			      SPI_NOR_QUAD_READ) },
 	{ "mx25u12835f", INFO(0xc22538, 0, 64 * 1024, 256)
 		NO_SFDP_FLAGS(SECT_4K | SPI_NOR_DUAL_READ |
 			      SPI_NOR_QUAD_READ) },
