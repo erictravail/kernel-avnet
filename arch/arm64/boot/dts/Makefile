@@ -19,6 +19,7 @@ subdir-y += lg
 subdir-y += marvell
 subdir-y += mediatek
 subdir-y += microchip
+subdir-y += msc
 subdir-y += nuvoton
 subdir-y += nvidia
 subdir-y += qcom
