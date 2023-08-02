@@ -32,22 +32,6 @@
 		stdout-path = &uart2;
 	};
 
-	/* clkout1 monitor output */
-	clkout1: clkout1 {
-		compatible = "fixed-clock";
-		#clock-cells = <0>;
-		clock-frequency = <24000000>;
-		clock-output-names = "clkout1";
-	};
-
-	/* clkout2 monitor output */
-	clkout2: clkout2 {
-		compatible = "fixed-clock";
-		#clock-cells = <0>;
-		clock-frequency = <24000000>;
-		clock-output-names = "clkout2";
-	};
-
 	reg_usb0_host_vbus: regulator-usb0-vbus {
 		compatible = "regulator-fixed";
 		regulator-name = "usb0_host_vbus";
@@ -875,11 +859,11 @@
 	status = "okay";
 };
 
-&anatop {
-	clkout1,source = <IMX8MP_CLK_CLKOUT_OUTPUT_SEL_SYSOSC_24M>;
-	clkout1,enable;
-	clkout2,source = <IMX8MP_CLK_CLKOUT_OUTPUT_SEL_SYSOSC_24M>;
-	clkout2,enable;
+&clk {
+	assigned-clocks = <&clk IMX8MP_CLK_CLKOUT1_SEL>, <&clk IMX8MP_CLK_CLKOUT2_SEL>;
+	assigned-clock-parents = <&clk IMX8MP_CLK_24M>, <&clk IMX8MP_CLK_24M>;
+	/* to enable - add in init-on-array  */
+	init-on-array = <IMX8MP_CLK_CLKOUT1 IMX8MP_CLK_CLKOUT2>;
 };
 
 &a53_opp_table {
