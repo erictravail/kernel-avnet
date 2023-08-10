@@ -859,13 +859,6 @@
 	status = "okay";
 };
 
-&clk {
-	assigned-clocks = <&clk IMX8MP_CLK_CLKOUT1_SEL>, <&clk IMX8MP_CLK_CLKOUT2_SEL>;
-	assigned-clock-parents = <&clk IMX8MP_CLK_24M>, <&clk IMX8MP_CLK_24M>;
-	/* to enable - add in init-on-array  */
-	init-on-array = <IMX8MP_CLK_CLKOUT1 IMX8MP_CLK_CLKOUT2>;
-};
-
 &a53_opp_table {
 	opp-1200000000 {
 		opp-microvolt = <950000>;
