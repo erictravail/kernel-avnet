@@ -23,7 +23,7 @@
 		__overlay__ {
 			da7213_sound: da7213-sound {
 				compatible = "fsl,imx-audio-da7213";
-				card-name = "imx-da7212-audio";
+				card-name = "imxda7212audio";
 				fsl,no-audmux;
 				ssi-controller = <&sai2>;
 				audio-codec = <&da7213_codec>;
