@@ -18,6 +18,7 @@
 #include <dt-bindings/net/ti-dp83867.h>
 #include <dt-bindings/mfd/ricoh-rn5t618.h>
 #include <dt-bindings/input/snvs_pwrkey.h>
+#include <dt-bindings/phy/phy-imx8-pcie.h>
 
 / {
 	model = "MSC SM2S-IMX8MPLUS";
@@ -83,6 +84,12 @@
 		regulator-min-microvolt = <3300000>;
 		regulator-max-microvolt = <3300000>;
 		enable-active-high;
+	};
+
+	pcie0_refclk: pcie0-refclk {
+		compatible = "fixed-clock";
+		#clock-cells = <0>;
+		clock-frequency = <100000000>;
 	};
 
 	lcd0_backlight: lcd0_backlight {
@@ -834,7 +841,6 @@
 
 &pcie {
 	reset-gpio = <&ioexpander 15 GPIO_ACTIVE_LOW>;
-	ext_osc = <1>;
 	clocks = <&clk IMX8MP_CLK_HSIO_ROOT>,
 		 <&clk IMX8MP_CLK_PCIE_AUX>,
 		 <&clk IMX8MP_CLK_HSIO_AXI>,
@@ -850,7 +856,9 @@
 };
 
 &pcie_phy {
-	ext_osc = <1>;
+	fsl,refclk-pad-mode = <IMX8_PCIE_REFCLK_PAD_INPUT>;
+	clocks = <&pcie0_refclk>;
+	clock-names = "ref";
 	status = "okay";
 };
 
