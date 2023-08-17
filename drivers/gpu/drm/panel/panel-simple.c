@@ -762,6 +762,7 @@ static const struct panel_desc innolux_g156hce_l01 = {
 		.width = 344,
 		.height = 194,
 	},
+	.bus_flags = DRM_BUS_FLAG_DE_HIGH,
 	.bus_format = MEDIA_BUS_FMT_RGB888_1X7X4_SPWG,
 	.connector_type = DRM_MODE_CONNECTOR_LVDS,
 };
