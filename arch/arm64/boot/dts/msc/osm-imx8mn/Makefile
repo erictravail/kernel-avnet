@@ -1,5 +1,5 @@
 #
-# Copyright (C) 2022-2023 AVNET Embedded
+# Copyright (C) 2022 AVNET Embedded, <avnet-embedded.eu>
 #
 # This program is free software; you can redistribute it and/or
 # modify it under the terms of the GNU General Public License as
@@ -11,5 +11,15 @@
 # GNU General Public License for more details.
 #
 
-subdir-y += imx8mp
-subdir-y += osm-imx8mn
+dtb-$(CONFIG_IMX8MN) += \
+	msc-osm-imx8m-nano-8NQ1G160-module.dtb \
+	overlay-sm2f-osm-ad-001.dtb \
+	overlay-baseboard-vebo.dtb \
+	overlay-baseboard-ep1.dtb \
+	overlay-baseboard-afts2019.dtb \
+	overlay-display-lvds-ama-121a01.dtb \
+	overlay-camera-ov5640.dtb 
+
+always		:= $(dtb-y)
+subdir-y	:= $(dts-dirs)
+clean-files	:= *.dtb

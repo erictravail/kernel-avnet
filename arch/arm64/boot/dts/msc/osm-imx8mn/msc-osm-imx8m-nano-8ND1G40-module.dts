@@ -1,0 +1,31 @@
+/*
+ * Copyright (C) 2022 AVNET Embedded, MSC Technologies GmbH
+ *
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU General Public License as
+ * published by the Free Software Foundation version 2.
+ *
+ * This program is distributed "as is" WITHOUT ANY WARRANTY of any
+ * kind, whether express or implied; without even the implied warranty
+ * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ */
+
+/dts-v1/;
+
+/* feature key decoded:
+   8	    imx8
+   N	    nano
+   D	    dualcore
+   1G	    1gb lpddr4
+   40	    4GB eMMC
+*/
+
+#include "msc-osm-imx8m-nano-module.dtsi"
+
+/ {
+	memory@40000000 {
+		/* 1GiB LPDDR4 */
+		reg = <0x0 0x40000000 0 0x40000000>;
+	};
+};
