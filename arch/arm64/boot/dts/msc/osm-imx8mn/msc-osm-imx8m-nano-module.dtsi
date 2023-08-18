@@ -43,22 +43,6 @@
 		status = "disabled";
 	};
 
-	/* clkout1 monitor output */
-	clkout1: clkout1 {
-		compatible = "fixed-clock";
-		#clock-cells = <0>;
-		clock-frequency = <24000000>;
-		clock-output-names = "clkout1";
-	};
-
-	/* clkout2 monitor output */
-	clkout2: clkout2 {
-		compatible = "fixed-clock";
-		#clock-cells = <0>;
-		clock-frequency = <24000000>;
-		clock-output-names = "clkout2";
-	};
-
 	reg_otg1_vbus: otg1-vbus-regulator {
 		compatible = "regulator-fixed";
 		regulator-name = "OTG1_VBUS";
@@ -161,19 +145,19 @@
 	i2c_ids {
 		compatible = "msc,i2c-ids";
 		i2c_dev {
-			label = "dev";
+			label = "intern";
 			bus = <&i2c1>;
 		};
 		i2c_pm {
-			label = "pm";
+			label = "I2C_A";
 			bus = <&i2c2>;
 		};
 		i2c_gp {
-			label = "gp";
+			label = "I2C_B";
 			bus = <&i2c3>;
 		};
 		i2c_cam {
-			label = "cam";
+			label = "I2C_CAM";
 			bus = <&i2c4>;
 		};
 	};
@@ -211,7 +195,7 @@
 	};
 };
 
-/* I2C_DEV */
+/* I2C_intern */
 &i2c1 {
 	pinctrl-names = "default";
 	pinctrl-0 = <&pinctrl_i2c1>;
@@ -223,7 +207,7 @@
 		reg = <0x31>;
 		pmic-id = <0>;
 		system-power-controller;
-		system-restart-controller;
+/*		system-restart-controller; */
 		sleep-sequence = /bits/ 8 <
 				0x16	0x2b
 				0x17	0x49
@@ -320,7 +304,7 @@
 
 };
 
-/* I2C_PM */
+/* I2C_A */
 &i2c2 {
 	clock-frequency = <400000>;
 	pinctrl-names = "default";
@@ -328,17 +312,13 @@
 	status = "okay";
 };
 
-/* I2C_GP */
+/* I2C_B */
 &i2c3 {
 	clock-frequency = <100000>;
 	pinctrl-names = "default";
 	pinctrl-0 = <&pinctrl_i2c3>;
 	status = "okay";
 
-	module_eeprom@50 {
-		compatible = "atmel,24c64";
-		reg = <0x50>;
-	};
 };
 
 /* I2C_CAM */
@@ -487,24 +467,6 @@
 	fsl,ext-reset-output;
 	status = "okay";
 };
-
-///* qspi */
-//&flexspi {
-//	pinctrl-names = "default";
-//	pinctrl-0 = <&pinctrl_flexspi>;
-//	status = "okay";
-//
-//	qspi_flash: qspi_flash@0 {
-//		reg = <0>;
-//		#address-cells = <1>;
-//		#size-cells = <1>;
-//		compatible = "jedec,spi-nor";
-//		spi-max-frequency = <80000000>;
-//		spi-tx-bus-width = <4>;
-//		spi-rx-bus-width = <4>;
-//	};
-//};
-
 
 &pwm1 {
 	pinctrl-names = "default";
@@ -670,7 +632,7 @@
 			>;
 		};
 
-		/* I2C_DEV */
+		/* I2C_intern */
 		pinctrl_i2c1: i2c1grp {
 			fsl,pins = <
 				MX8MN_IOMUXC_I2C1_SCL_I2C1_SCL		0x400001e0	/* I2C_DEV_SCL */
@@ -678,7 +640,7 @@
 			>;
 		};
 
-		/* I2C_PM */
+		/* I2C_A */
 		pinctrl_i2c2: i2c2grp {
 			fsl,pins = <
 				MX8MN_IOMUXC_I2C2_SCL_I2C2_SCL		0x400001e0	/* I2C_PM_SCL */
@@ -686,7 +648,7 @@
 			>;
 		};
 
-		/* I2C_GP */
+		/* I2C_B */
 		pinctrl_i2c3: i2c3grp {
 			fsl,pins = <
 				MX8MN_IOMUXC_I2C3_SCL_I2C3_SCL		0x400001e0	/* I2C_GP_SCL */
@@ -695,15 +657,15 @@
 			>;
 		};
 
-		/* I2C4 */
+		/* I2C_CAM */
 		pinctrl_i2c4: i2c4grp {
 			fsl,pins = <
-				MX8MN_IOMUXC_I2C4_SCL_I2C4_SCL		0x400001e0	/* I2C_LCD_SCL */
-				MX8MN_IOMUXC_I2C4_SDA_I2C4_SDA		0x400001e0	/* I2C_LCD_SDA */
+				MX8MN_IOMUXC_I2C4_SCL_I2C4_SCL		0x400001e0	/* I2C_CAM_SCL */
+				MX8MN_IOMUXC_I2C4_SDA_I2C4_SDA		0x400001e0	/* I2C_CAM_SDA */
 			>;
 		};
 
-		/* I2C4_GPIO */
+		/* I2C_CAM_GPIO */
 		pinctrl_i2c4_gpio: i2c4gpiogrp {
 			fsl,pins = <
 				MX8MN_IOMUXC_I2C4_SCL_GPIO5_IO20	0x400001e0	/* I2C_CAM_SCL, linux-gpio-id=148 */
