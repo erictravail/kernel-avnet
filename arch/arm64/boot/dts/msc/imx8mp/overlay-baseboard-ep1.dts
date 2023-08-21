@@ -48,7 +48,8 @@
 			sgtl5000_sound: sgtl5000-sound {
 				compatible = "fsl,imx-audio-sgtl5000";
 				model = "imx-sgtl5000";
-				audio-cpu = <&sai2>;
+				fsl,no-audmux;
+				ssi-controller = <&sai2>;
 				audio-codec = <&sgtl5000_codec>;
 				audio-routing =
 						"LINE_IN", "Line In Jack",
