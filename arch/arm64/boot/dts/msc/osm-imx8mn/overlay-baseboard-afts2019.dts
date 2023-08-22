@@ -153,8 +153,11 @@
 			sgtl5000_codec: sgtl5000@a {
 				compatible = "fsl,sgtl5000";
 				reg = <0x0a>;
-				clocks = <&clkout1>;
+				clocks = <&clk IMX8MN_CLK_CLKOUT1>;
 				clock-names = "audio_mclk";
+				assigned-clocks = <&clk IMX8MN_CLK_CLKOUT1_SEL>;
+				assigned-clock-parents = <&clk IMX8MN_CLK_24M>;
+				assigned-clock-rates = <24000000>;
 				VDDA-supply = <&reg_vcc_3v3_audio>;
 				VDD-supply = <&reg_vcc_1v8_audio>;
 				VDDIO-supply = <&reg_vcc_1v8_audio>;
