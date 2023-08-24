@@ -106,7 +106,7 @@
 			spi-max-frequency = <20000000>;
 		};
 	};
-#if 1
+
 	fragment@1110 {
 		target = <&spidev1_0>;
 		__overlay__ {
@@ -123,5 +123,4 @@
 		};
 	};
 
-#endif
 };
