@@ -12,7 +12,12 @@
 #
 
 dtb-$(CONFIG_IMX8MN) += \
+	msc-osm-imx8m-nano-8NQ1G40-module.dtb \
 	msc-osm-imx8m-nano-8NQ1G160-module.dtb \
+	msc-osm-imx8m-nano-02N0800I-module.dtb \
+	msc-osm-imx8m-nano-04N0800E-module.dtb \
+	msc-osm-imx8m-nano-DC-004-module.dtb \
+	msc-osm-imx8m-nano-QC-003-module.dtb \
 	overlay-sm2f-osm-ad-001.dtb \
 	overlay-baseboard-vebo.dtb \
 	overlay-baseboard-ep1.dtb \
