@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2021 AVNET Integrated, MSC Technologies GmbH
+ * Copyright (C) 2023 AVNET Integrated, MSC Technologies GmbH
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -35,8 +35,8 @@
 				assigned-clock-parents = <&clk IMX8MN_CLK_24M>;
 				assigned-clock-rates = <24000000>;
 				csi_id = <0>;
-				powerdown-gpios = <&gpio4 28 GPIO_ACTIVE_HIGH>;
-				reset-gpios     = <&gpio5  1 GPIO_ACTIVE_LOW>;
+				powerdown-gpios = <&gpio4 28 GPIO_ACTIVE_HIGH>; /* CAM_PWR */
+				reset-gpios     = <&gpio5  1 GPIO_ACTIVE_LOW>;  /* CAM_RST */
 				mclk = <24000000>;
 				mclk_source = <0>;
 				status = "okay";
@@ -92,11 +92,11 @@
 	fragment@9004 {
 		target = <&iomuxc>;
 		__overlay__ {
-		        osm-imx8mn {
+			osm-imx8mn {
 				pinctrl_ov5640: ov5640grp {
 					fsl,pins = <
 						MX8MN_IOMUXC_SAI3_RXFS_GPIO4_IO28	0x40000019	/* CAM_PWR  */
-						MX8MN_IOMUXC_SAI3_TXD_GPIO5_IO1		0x40000019	/* CAM_RST# */
+						MX8MN_IOMUXC_SAI3_TXD_GPIO5_IO1	0x40000019	/* CAM_RST# */
 					>;
 				};
 			};

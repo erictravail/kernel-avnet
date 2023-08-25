@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2022 AVNET Integrated, MSC Technologies GmbH
+ * Copyright (C) 2023 AVNET Integrated, MSC Technologies GmbH
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -89,22 +89,22 @@
 	};
 
 	fragment@5205 {
+		target-path = "/";
+		__overlay__ {
+			user_gpios {
+				GPIO_C_5-ignore;	/* LVDS0_BLEN */
+			};
+		};
+	};
+
+	fragment@5206 {
 		target = <&gpu>;
 		__overlay__ {
 			status = "okay";
 		};
 	};
 
-	fragment@5206 {
-		target-path = "/";
-		__overlay__ {
-			user_gpios {
-				GPIO_A6-ignore;
-			};
-		};
-	};
-
-	fragment@5209 {
+	fragment@5207 {
 		target = <&mu>;
 		__overlay__ {
 			status = "okay";
