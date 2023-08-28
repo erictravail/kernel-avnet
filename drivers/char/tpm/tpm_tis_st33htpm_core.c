@@ -934,7 +934,7 @@ int tpm_tis_core_init(struct device *dev, struct tpm_tis_data *priv, int irq,
 	u8 rid;
 	int rc, probe;
 	struct tpm_chip *chip;
-	printk("-- Line %d, File: %s\n", __LINE__, __FILE__);
+	
 	chip = tpmm_chip_alloc(dev, &tpm_tis);
 	if (IS_ERR(chip))
 		return PTR_ERR(chip);
@@ -952,7 +952,7 @@ int tpm_tis_core_init(struct device *dev, struct tpm_tis_data *priv, int irq,
 	chip->timeout_d = msecs_to_jiffies(TIS_TIMEOUT_D_MAX);
 	priv->phy_ops = phy_ops;
 	dev_set_drvdata(&chip->dev, priv);
-	printk("-- Line %d, File: %s\n", __LINE__, __FILE__);
+	
 	if (is_bsw()) {
 		priv->ilb_base_addr = ioremap(INTEL_LEGACY_BLK_BASE_ADDR,
 					ILB_REMAP_SIZE);
@@ -974,7 +974,7 @@ int tpm_tis_core_init(struct device *dev, struct tpm_tis_data *priv, int irq,
 		rc = -ENODEV;
 		goto out_err;
 	}
-	printk("-- Line %d, File: %s\n", __LINE__, __FILE__);
+	
 	/* Take control of the TPM's interrupt hardware and shut it off */
 	rc = tpm_tis_read32(priv, TPM_INT_ENABLE(priv->locality), &intmask);
 	if (rc < 0)
@@ -985,7 +985,7 @@ int tpm_tis_core_init(struct device *dev, struct tpm_tis_data *priv, int irq,
 		   TPM_INTF_DATA_AVAIL_INT | TPM_INTF_STS_VALID_INT;
 	intmask &= ~TPM_GLOBAL_INT_ENABLE;
 	tpm_tis_write32(priv, TPM_INT_ENABLE(priv->locality), intmask);
-	printk("-- Line %d, File: %s\n", __LINE__, __FILE__);
+	
 	rc = tpm_chip_start(chip);
 	if (rc)
 		goto out_err;
@@ -993,7 +993,7 @@ int tpm_tis_core_init(struct device *dev, struct tpm_tis_data *priv, int irq,
 	tpm_chip_stop(chip);
 	if (rc)
 		goto out_err;
-	printk("-- Line %d, File: %s\n", __LINE__, __FILE__);
+	
 	rc = tpm_tis_read32(priv, TPM_DID_VID(0), &vendor);
 	if (rc < 0)
 		goto out_err;
@@ -1007,7 +1007,7 @@ int tpm_tis_core_init(struct device *dev, struct tpm_tis_data *priv, int irq,
 	dev_info(dev, "%s TPM (device-id 0x%X, rev-id %d)\n",
 		 (chip->flags & TPM_CHIP_FLAG_TPM2) ? "2.0" : "1.2",
 		 vendor >> 16, rid);
-	printk("-- Line %d, File: %s\n", __LINE__, __FILE__);
+	
 	probe = probe_itpm(chip);
 	if (probe < 0) {
 		rc = -ENODEV;
@@ -1074,7 +1074,7 @@ int tpm_tis_core_init(struct device *dev, struct tpm_tis_data *priv, int irq,
 
 	if (chip->ops->clk_enable != NULL)
 		chip->ops->clk_enable(chip, false);
-	printk("-- Line %d, File: %s\n", __LINE__, __FILE__);
+	
 	return 0;
 
 out_err:
