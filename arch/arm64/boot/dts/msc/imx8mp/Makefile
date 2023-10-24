@@ -24,6 +24,8 @@ dtb-$(CONFIG_IMX8MP) += \
 	msc-sm2s-imx8mp6-14N0E00I-module.dtb \
 	msc-sm2s-imx8mp-14N0741I-module.dtb \
 	msc-sm2s-imx8mp6-15N0700E-module.dtb \
+	msc-sm2s-imx8mp-26N2700I-module.dtb \
+	msc-sm2s-imx8mp-28N0700I-module.dtb \
 	overlay-baseboard-ep1.dtb \
 	overlay-baseboard-vebo.dtb \
 	overlay-cam0-ov5640.dtb \
