@@ -13,3 +13,4 @@
 
 subdir-y += imx8mp
 subdir-y += osm-imx8mn
+subdir-y += osm-imx8mm

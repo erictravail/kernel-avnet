@@ -1,0 +1,33 @@
+/*
+ * Copyright (C) 2022 AVNET Embedded, MSC Technologies GmbH
+ *
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU General Public License as
+ * published by the Free Software Foundation version 2.
+ *
+ * This program is distributed "as is" WITHOUT ANY WARRANTY of any
+ * kind, whether express or implied; without even the implied warranty
+ * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ */
+
+/dts-v1/;
+
+/* feature key decoded:
+   8	    imx8
+   M	    mini
+   Q	    quadcore
+   4G	    4gb lpddr4
+   160	    16GB eMMC
+*/
+
+#define HAS_QSPI
+
+#include "msc-osm-imx8m-mini-module.dtsi"
+
+/ {
+	memory@40000000 {
+		/* 4GiB LPDDR4 */
+		reg = <0x0 0x40000000 1 0x000000000>;
+	};
+};

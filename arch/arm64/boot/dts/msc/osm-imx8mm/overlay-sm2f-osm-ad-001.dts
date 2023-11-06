@@ -1,0 +1,60 @@
+/*
+ * Copyright (C) 2022 Avnet Embedded GmbH
+ *
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU General Public License as
+ * published by the Free Software Foundation version 2.
+ *
+ * This program is distributed "as is" WITHOUT ANY WARRANTY of any
+ * kind, whether express or implied; without even the implied warranty
+ * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ */
+
+/dts-v1/;
+/plugin/;
+#include <dt-bindings/gpio/gpio.h>
+
+/ {
+	fragment@1000 {
+		target-path = "/";
+		__overlay__ {
+			user_gpios {
+				GPIO_A5-ignore;
+			};
+		};
+	};
+	fragment@1001 {
+		target = <&lcd0_backlight>;
+		__overlay__ {
+			status = "okay";
+		};
+	};
+
+	fragment@1002 {
+		target = <&i2c2>;
+		__overlay__ {
+			#address-cells = <1>;
+			#size-cells = <0>;
+			dsi_lvds_bridge: sn65dsi84@2d {
+				compatible = "ti,sn65dsi83";
+				reg = <0x2d>;
+				enable-panel-gpios = <&gpio1 1 GPIO_ACTIVE_HIGH>; /* GPIO_A 5 */
+				backlight = <&lcd0_backlight>;
+				status = "disabled";
+			};
+
+			pci_clk: pci_clk@6b { /* so far this is a no-op to document the I2C address of the PCIe clock generator. */
+				compatible = "si,52144";
+				reg = <0x6b>;
+			};
+
+		};
+	};
+	fragment@1003 {
+		target = <&pcie0>;
+		__overlay__ {
+			ext_osc = <1>;
+		};
+	};
+};
