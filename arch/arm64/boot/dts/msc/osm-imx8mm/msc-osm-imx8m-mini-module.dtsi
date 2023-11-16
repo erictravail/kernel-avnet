@@ -260,8 +260,6 @@
 		compatible = "ricoh,rn5t567";
 		reg = <0x31>;
 		pmic-id = <0>;
-		system-power-controller;
-		system-restart-controller;
 		sleep-sequence = /bits/ 8 <
 				0x16	0x2b
 				0x17	0x49
@@ -358,25 +356,26 @@
 
 };
 
-/* I2C_PM */
+/* I2C_A */
 &i2c2 {
 	clock-frequency = <400000>;
 	pinctrl-names = "default";
 	pinctrl-0 = <&pinctrl_i2c2>;
 	status = "okay";
+
+	module_eeprom@50 {
+		compatible = "atmel,24c04";
+		reg = <0x50>;
+	};
 };
 
-/* I2C_GP */
+/* I2C_B */
 &i2c3 {
 	clock-frequency = <100000>;
 	pinctrl-names = "default";
 	pinctrl-0 = <&pinctrl_i2c3>;
 	status = "okay";
 
-	module_eeprom@50 {
-		compatible = "atmel,24c64";
-		reg = <0x50>;
-	};
 };
 
 /* I2C_CAM */
