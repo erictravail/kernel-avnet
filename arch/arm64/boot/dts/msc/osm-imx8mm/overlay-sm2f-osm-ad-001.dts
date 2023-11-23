@@ -14,6 +14,7 @@
 /dts-v1/;
 /plugin/;
 #include <dt-bindings/gpio/gpio.h>
+#include "dt-bindings/phy/phy-imx8-pcie.h"
 
 / {
 	fragment@1000 {
@@ -52,9 +53,9 @@
 		};
 	};
 	fragment@1003 {
-		target = <&pcie0>;
+		target = <&pcie_phy>;
 		__overlay__ {
-			ext_osc = <1>;
+			fsl,refclk-pad-mode = <IMX8_PCIE_REFCLK_PAD_INPUT>;
 		};
 	};
 };
