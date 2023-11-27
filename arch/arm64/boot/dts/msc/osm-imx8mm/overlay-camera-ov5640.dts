@@ -25,10 +25,12 @@
 			#address-cells = <1>;
 			#size-cells = <0>;
 			ov5640_cam: ov5640_mipi@3c {
+				pinctrl-names = "default";
+				pinctrl-0 = <&pinctrl_ov5640>;
 				compatible = "ovti,ov5640_mipi";
 				reg = <0x3c>;
 				clocks = <&clk IMX8MM_CLK_CLKOUT2>;
-				clock-names = "xclk";
+				clock-names = "csi_mclk";
 				assigned-clocks = <&clk IMX8MM_CLK_CLKOUT2_SEL>;
 				assigned-clock-parents = <&clk IMX8MM_CLK_24M>;
 				assigned-clock-rates = <24000000>;

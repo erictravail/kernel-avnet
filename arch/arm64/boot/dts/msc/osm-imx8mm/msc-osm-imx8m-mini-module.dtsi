@@ -21,7 +21,7 @@
 
 / {
 	model = "MSC OSM-IMX8MM";
-	compatible = "msc,osm-imx8mn", "fsl,imx8mn";
+	compatible = "msc,osm-imx8mm", "fsl,imx8mm";
 
 	chosen {
 		stdout-path = &uart1;
