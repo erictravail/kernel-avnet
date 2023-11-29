@@ -485,8 +485,8 @@
 			vcc_arm: DCDC3 {
 				regulator-name = "VCC_ARM";
 				regulator-always-on;
-				regulator-min-microvolt = <950000>;
-				regulator-max-microvolt = <950000>;
+				regulator-min-microvolt = <962500>;
+				regulator-max-microvolt = <962500>;
 			};
 			DCDC4 {
 				regulator-name = "VCC_1V8";
