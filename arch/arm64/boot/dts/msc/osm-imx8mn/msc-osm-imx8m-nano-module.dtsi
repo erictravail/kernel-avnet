@@ -95,15 +95,19 @@
 
 	user_gpios {
 		compatible = "msc,user-gpios";
-		GPIO_A_0-gpios = <&gpio4 25 GPIO_ACTIVE_HIGH>;
-		GPIO_A_1-gpios = <&gpio4 26 GPIO_ACTIVE_HIGH>;
-		GPIO_A_2-gpios = <&gpio4 21 GPIO_ACTIVE_HIGH>;
-		GPIO_A_3-gpios = <&gpio4 22 GPIO_ACTIVE_HIGH>;
-		GPIO_A_4-gpios = <&gpio1  0 GPIO_ACTIVE_HIGH>;
-		GPIO_A_7-gpios = <&gpio3 25 GPIO_ACTIVE_HIGH>;
-		GPIO_B_0-gpios = <&gpio3 20 GPIO_ACTIVE_HIGH>;
-		GPIO_C_4-gpios = <&gpio1  1 GPIO_ACTIVE_HIGH>;
-		GPIO_C_5-gpios = <&gpio1  5 GPIO_ACTIVE_HIGH>;
+		GPIO_A0-gpios = <&gpio4 25 GPIO_ACTIVE_HIGH>;
+		GPIO_A1-gpios = <&gpio4 26 GPIO_ACTIVE_HIGH>;
+		GPIO_A2-gpios = <&gpio4 21 GPIO_ACTIVE_HIGH>;
+		GPIO_A3-gpios = <&gpio4 22 GPIO_ACTIVE_HIGH>;
+		GPIO_A4-gpios = <&gpio1  0 GPIO_ACTIVE_HIGH>;
+		GPIO_A7-gpios = <&gpio3 25 GPIO_ACTIVE_HIGH>;
+		GPIO_B0-gpios = <&gpio3 20 GPIO_ACTIVE_HIGH>;
+		GPIO_B1-gpios = <&gpio3  7 GPIO_ACTIVE_HIGH>;
+		GPIO_B2-gpios = <&gpio3  6 GPIO_ACTIVE_HIGH>;
+		GPIO_B3-gpios = <&gpio3  0 GPIO_ACTIVE_HIGH>;
+		GPIO_B4-gpios = <&gpio3  1 GPIO_ACTIVE_HIGH>;
+		GPIO_B5-gpios = <&gpio3  8 GPIO_ACTIVE_HIGH>;
+		GPIO_B6-gpios = <&gpio3  9 GPIO_ACTIVE_HIGH>;
 	};
 
 	lcd0_backlight: lcd0_backlight {
@@ -565,7 +569,12 @@
 				MX8MN_IOMUXC_SAI5_MCLK_GPIO3_IO25	0x40000019	/* GPIO_A_7 */
 				/* GPIO_B */
 				MX8MN_IOMUXC_SAI5_RXC_GPIO3_IO20	0x40000019	/* GPIO_B_0 */
-				/* GPIO_B1 - GPIO_B6 shared with QSPI */
+				MX8MN_IOMUXC_NAND_DATA01_GPIO3_IO7	0x40000019	/* GPIO B 1 */
+				MX8MN_IOMUXC_NAND_DATA00_GPIO3_IO6	0x40000019	/* GPIO B 2 */
+				MX8MN_IOMUXC_NAND_ALE_GPIO3_IO0		0x40000019	/* GPIO B 3 */
+				MX8MN_IOMUXC_NAND_CE0_B_GPIO3_IO1	0x40000019	/* GPIO B 4 */
+				MX8MN_IOMUXC_NAND_DATA02_GPIO3_IO8	0x40000019	/* GPIO B 5 */
+				MX8MN_IOMUXC_NAND_DATA03_GPIO3_IO9	0x40000019	/* GPIO B 6 */
 				/* GPIO B7 - n.a. on nano */
 
 				/* GPIO_C_0 - GPIO_C_3 na. on nano*/
