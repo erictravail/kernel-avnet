@@ -197,19 +197,19 @@
 	i2c_ids {
 		compatible = "msc,i2c-ids";
 		i2c_dev {
-			label = "dev";
+			label = "intern";
 			bus = <&i2c1>;
 		};
 		i2c_pm {
-			label = "pm";
+			label = "I2C_A";
 			bus = <&i2c2>;
 		};
 		i2c_gp {
-			label = "gp";
+			label = "I2C_B";
 			bus = <&i2c3>;
 		};
 		i2c_cam {
-			label = "cam";
+			label = "I2C_CAM";
 			bus = <&i2c4>;
 		};
 	};
