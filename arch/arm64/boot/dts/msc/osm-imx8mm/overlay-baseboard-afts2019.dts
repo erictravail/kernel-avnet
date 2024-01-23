@@ -16,6 +16,7 @@
 
 #include <dt-bindings/clock/imx8mm-clock.h>
 #include <dt-bindings/gpio/gpio.h>
+#include "OSM-Adapter-afts2019.dtsi"
 
 / {
 	fragment@1100 {
@@ -145,7 +146,51 @@
 		};
 	};
 
-	fragment@1112 {
+	fragment@1113 {
+		target = <&i2c2>; /* i2c_gp */
+		__overlay__ {
+			#address-cells = <1>;
+			#size-cells = <0>;
+			pca9541a_u0502@70 {
+				compatible = "nxp,pca9541";
+				reg = <0x70>; /* S0503 must be set all to on */
+
+				i2c_arb: i2c-arb {
+					#address-cells = <1>;
+					#size-cells = <0>;
+
+					adc@35 {
+						compatible = "maxim,max1139";
+						reg = <0x35>;
+					};
+
+					eeprom@54 {
+						compatible = "atmel,24c64";
+						reg = <0x54>;
+					};
+
+					fpga_u0801@74 {
+						compatible = "msc,afts2019_fpga";
+						reg = <0x74>;
+					};
+				};
+			};
+		};
+	};
+
+	fragment@1114 {
+		target-path = "/";
+		__overlay__ {
+			i2c_ids {
+				i2c_thw {
+					label = "thw";
+					bus = <&i2c_arb>;
+				};
+			};
+		};
+	};
+
+	fragment@1115 {
 		target = <&i2c3>;
 		__overlay__ {
 			#address-cells = <1>;
@@ -165,14 +210,14 @@
 		};
 	};
 
-	fragment@1113 {
+	fragment@1116 {
 		target = <&sai5>;
 		__overlay__ {
 			status = "okay";
 		};
 	};
 
-	fragment@1114 {
+	fragment@1117 {
 		target = <&usdhc1>;
 		__overlay__ {
 			  bus-width = <4>;

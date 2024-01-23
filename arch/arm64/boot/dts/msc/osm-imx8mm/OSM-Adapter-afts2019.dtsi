@@ -1,0 +1,28 @@
+/*
+ * Copyright (C) 2024 Avnet Embedded GmbH
+ *
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU General Public License as
+ * published by the Free Software Foundation version 2.
+ *
+ * This program is distributed "as is" WITHOUT ANY WARRANTY of any
+ * kind, whether express or implied; without even the implied warranty
+ * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ */
+
+/* special overlay for OSM-Adapter on AFTS */
+
+/ {
+	fragment@1001 {
+		target = <&i2c3>;
+		__overlay__ {
+			#address-cells = <1>;
+			#size-cells = <0>;
+			adc@35 {
+			       compatible = "maxim,max1139";
+			       reg = <0x35>;
+			};
+		};
+	};
+};
