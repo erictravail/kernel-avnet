@@ -875,8 +875,14 @@
 
 &a53_opp_table {
 	opp-1200000000 {
-		opp-microvolt = <950000>;
-	};
+		opp-microvolt = <962500>;
+	};  
+	opp-1600000000 {
+        opp-microvolt = <962500>;
+    };
+    opp-1800000000 {
+        opp-microvolt = <962500>;
+    };
 };
 
 &gpio1 {
