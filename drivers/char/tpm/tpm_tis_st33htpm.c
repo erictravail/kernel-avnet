@@ -86,7 +86,8 @@ static int tpm_tis_i2c_read_bytes(struct tpm_tis_data *data, u32 addr,
 			.flags = I2C_M_RD,
 		},
 	};
-
+	printk("dbg1a addr:%u %0x\n",phy->i2c_client->addr,phy->i2c_client->addr);
+	printk("dbg1b bus:%s\n",phy->i2c_client->adapter->name);
 	ret = i2c_transfer(phy->i2c_client->adapter, msgs, ARRAY_SIZE(msgs));
 	if (ret < 0)
 		return ret;
@@ -115,6 +116,8 @@ static int tpm_tis_i2c_write_bytes(struct tpm_tis_data *data, u32 addr,
 				},
 			};
 
+			printk("dbg2a addr:%u %0x\n",phy->i2c_client->addr,phy->i2c_client->addr);
+			printk("dbg2b bus:%s\n",phy->i2c_client->adapter->name);
 			ret = i2c_transfer(phy->i2c_client->adapter, msgs,
 					   ARRAY_SIZE(msgs));
 		}
@@ -135,6 +138,9 @@ static int tpm_tis_i2c_write_bytes(struct tpm_tis_data *data, u32 addr,
 			},
 		};
 
+
+		printk("dbg3a addr:%u %0x\n",phy->i2c_client->addr,phy->i2c_client->addr);
+		printk("dbg3b bus:%s\n",phy->i2c_client->adapter->name);
 		ret = i2c_transfer(phy->i2c_client->adapter, msgs, ARRAY_SIZE(msgs));
 	}
 
@@ -201,22 +207,29 @@ static int tpm_tis_i2c_probe(struct i2c_client *dev,
 	
 	phy = devm_kzalloc(&dev->dev, sizeof(struct tpm_tis_i2c_phy),
 			   GFP_KERNEL);
+	printk ("dbg:i2c_probe\n");
 	if (!phy)
 		return -ENOMEM;
 
+	printk ("dbg:i2c_probe1\n");
 	phy->i2c_client = dev;
 	if (!i2c_check_functionality(dev->adapter, I2C_FUNC_NOSTART)) {
 		phy->iobuf = devm_kmalloc(&dev->dev, TPM_BUFSIZE, GFP_KERNEL);
 		if (!phy->iobuf)
 			return -ENOMEM;
 	}
+
+	printk ("dbg:i2c_probe2\n");
 	rc = tpm_tis_i2c_write_bytes(&phy->priv, TPM_LOC_SEL, 1, &loc_init);
 	if (rc < 0)
 		return rc;
 
+	printk ("dbg:i2c_probe3\n");
 	rc = csum_state_store(&phy->priv, 0x01);
 	if (rc < 0)
 		return rc;
+
+	printk ("dbg:i2c_probe4\n");
 	return tpm_tis_core_init(&dev->dev, &phy->priv, -1, &tpm_i2c_phy_ops,
 					NULL);
 }
